@@ -1,0 +1,68 @@
+body {
+  margin: 0 auto;
+  font-family: "Archivo Black", sans-serif;
+}
+
+.container {
+  display: flex;
+}
+
+.sec-one {
+  grid-area: sec-one;
+}
+
+.sec-two {
+  grid-area: sec-two;
+}
+
+.book1 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 2rem;
+  padding: 1rem;
+  font-family: Arial, Helvetica, sans-serif;
+  list-style: none;
+  text-align: center;
+}
+
+.article-title {
+  line-height: 50px;
+  font-size: 4rem;
+  justify-content: space-around;
+  padding: 10%;
+}
+.sm-txt {
+  font-size: 1rem;
+  font-family: "Archivo", sans-serif;
+  text-transform: uppercase;
+}
+.header {
+  padding: 2rem;
+}
+
+.title {
+  font-size: 2.5rem;
+  margin: 20px;
+  font-family: "Archivo Black", sans-serif;
+  text-align: center;
+  letter-spacing: 4px;
+  color: rgba(0, 0, 0, 0.887);
+}
+
+.content-2 {
+  justify-content: space-around;
+  padding: 10%;
+  font-size: 1rem;
+  font-weight: 100;
+}
+
+.list {
+  border: 2px solid rgb(38, 38, 38);
+  list-style: none;
+  font-family: arial;
+}
+
+.userbooks {
+  display: flex;
+  flex-direction: column;
+}

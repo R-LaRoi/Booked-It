@@ -18,22 +18,23 @@ html(lang='en')
       .header
           div(class='title') BOOKED IT
             div(class='sm-txt') stay updated with the latest in literature
-    .container
-      .sec-one
-        div(class='article-title') books our readers loved
-          div(class='sm-txt')  SUMMER READS
-          form(method="get" action="/user_list")
-               button(type="submit") your list
-               
-      .sec-two
-        div(class='content-2') What would you like to read? explore our recommendations from our favorite writers and reders.    
-   
-    section    
-      .book1
-        each item in allTitles
-                  .list
-                          li #{item.title}
-                          li #{item.author} 
-                          li #{item.date_added}
-                         
-      
+            form(method="get" action="/")
+               button(type="submit") home
+
+      .container
+        .sec-one
+            div(class='article-title') YOUR BOOK LIST
+              div(class='sm-txt')  LATEST TITLES
+        .sec-two
+          div(class='content-2') FAVORITES
+          //- for each book in userbooks 
+
+        
+      .userbooks
+          each item in userTitles
+                    .list
+                            li #{item.title}
+                            li #{item.author} 
+                            li #{item.date_added} 
+                            form(method="delete" action="/deletebook")
+                              button(type="submit") remove
