@@ -16,19 +16,34 @@ html(lang='en')
   body
     section
       .header
-          div(class='title') BOOKED IT
-            div(class='sm-txt') stay updated with the latest in literature
+          nav.nav--
+              li.one
+                a(href="/user_list") your list 
+              li.two 
+                a(href="/favorite_list") faves 
+              li.three 
+                a(href="/") home
+          //- div(class='title') BOOKED IT
+          //-   div(class='sm-txt') stay updated with the latest in literature
+          //-   div(class="nav-")
+               
+            
+        
+            
     .container
       .sec-one
         div(class='article-title') books our readers loved
-          div(class='sm-txt')  SUMMER READS
+          div(class='sm-txt') SUMMER READS
           form(method="get" action="/user_list")
-               button(type="submit") your list
-          form(method="get" action="/favorite_list")   
-               button(type="submit") favorites     
-               
+            button(type="submit" class="button-49") your list
+          
+          
       .sec-two
-        div(class='content-2') What would you like to read? explore our recommendations from our favorite writers and reders.    
+         
+             div 
+              img(src="https://github.com/user-attachments/assets/155fda75-a67f-4b19-80b8-de59854058a4", alt="drawing" class="header-image")
+         
+                
    
     section    
       .book1

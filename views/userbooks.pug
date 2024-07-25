@@ -16,35 +16,39 @@ html(lang='en')
   body
     section
       .header
-          div(class='title') BOOKED IT
-            div(class='sm-txt') stay updated with the latest in literature
-            form(method="get" action="/")
-               button(type="submit") home
-            form(method="get" action="/favorite_list")   
-               button(type="submit") favorites
-
-      .container
-        .sec-one
-            div(class='article-title') YOUR BOOK LIST
+          nav.nav--
+              li.one
+                a(href="/user_list") your list 
+              li.two 
+                a(href="/favorite_list") faves 
+              li.three 
+                a(href="/") home
+            
+  main.bookedit 
+      
+            div(class='article-title') BOOKED IT
               div(class='sm-txt')  LATEST TITLES
-        .sec-two
-          div(class='content-2') ADD TO LIST
-            form(action="/addbook", method="POST")
-                      label(for="title") title:
-                      br
-                      input(type="title", id="title", name="title", required)
-                      br
-                      label(for="author") author:
-                      br
-                      input(type="text", id="author", name="author", required)
-                      br
-                      label(for="date_added") date:
-                      input(type="text", id="date_added", name="date_added", required)
-                      br
-                      button(type="submit") Submit
+              p(class='p-text') Chocolate cake macaroon candy canes lollipop liquorice bear claw gummies. Sugar plum fruitcake bear claw tootsie roll liquorice candy cupcake sugar plum croissant. Sweet roll soufflé tiramisu lollipop jelly brownie sugar plum. Dragée wafer jelly bear claw cheesecake cookie sweet cake. Marshmallow icing jelly pudding sweet. Cupcake powder marshmallow cookie cheesecake marshmallow. Liquorice pie gingerbread fruitcake jelly beans.
+              form(method="get" action="/favorite_list")   
+               button(type="submit" class="button-49" id="fave-btn") favorites   
         
-      .userbooks
-          each item in userTitles
+            div(class='content-2 book-form' id="addForm") ADD TO LIST
+              form(action="/addbook", method="POST")
+                      //- label(for="title") title:
+                      br
+                      input(type="title", id="title", name="title", placeholder="title", required)
+                      br
+                      //- label(placeholder="author") author:
+               
+                      input(type="text", id="author", name="author", placeholder="author" required)
+                      br
+                      //- label(for="date_added") date:
+                      input(type="date", id="date_added", name="date_added", required)
+                      br
+                      button(type="submit" class="add-btn") BOOK IT
+        
+  div.userbooks
+  each item in userTitles
                     .list
                             li #{item.title}
                             li #{item.author} 
