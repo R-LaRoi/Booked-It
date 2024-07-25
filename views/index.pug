@@ -24,6 +24,8 @@ html(lang='en')
           div(class='sm-txt')  SUMMER READS
           form(method="get" action="/user_list")
                button(type="submit") your list
+          form(method="get" action="/favorite_list")   
+               button(type="submit") favorites     
                
       .sec-two
         div(class='content-2') What would you like to read? explore our recommendations from our favorite writers and reders.    
@@ -35,5 +37,7 @@ html(lang='en')
                           li #{item.title}
                           li #{item.author} 
                           li #{item.date_added}
+                          form(method="POST" action=`/add_favorites/${item._id}`)
+                                button(type="submit") star
                          
       

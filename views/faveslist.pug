@@ -20,31 +20,11 @@ html(lang='en')
             div(class='sm-txt') stay updated with the latest in literature
             form(method="get" action="/")
                button(type="submit") home
-            form(method="get" action="/favorite_list")   
-               button(type="submit") favorites
-
-      .container
-        .sec-one
-            div(class='article-title') YOUR BOOK LIST
-              div(class='sm-txt')  LATEST TITLES
-        .sec-two
-          div(class='content-2') ADD TO LIST
-            form(action="/addbook", method="POST")
-                      label(for="title") title:
-                      br
-                      input(type="title", id="title", name="title", required)
-                      br
-                      label(for="author") author:
-                      br
-                      input(type="text", id="author", name="author", required)
-                      br
-                      label(for="date_added") date:
-                      input(type="text", id="date_added", name="date_added", required)
-                      br
-                      button(type="submit") Submit
-        
+            form(method="get" action="/user_list")
+               button(type="submit") your list   
+    section 
       .userbooks
-          each item in userTitles
+          each item in userFaves
                     .list
                             li #{item.title}
                             li #{item.author} 
@@ -52,3 +32,6 @@ html(lang='en')
                             form(method="POST" action=`/deletebook/${item._id}`)
                             
                               button(type="submit") Delete
+
+
+
