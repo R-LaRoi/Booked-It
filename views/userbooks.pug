@@ -39,7 +39,7 @@ html(lang='en')
                       input(type="title", id="title", name="title", placeholder="title", required)
                       br
                       //- label(placeholder="author") author:
-               
+                      br
                       input(type="text", id="author", name="author", placeholder="author" required)
                       br
                       //- label(for="date_added") date:
@@ -54,5 +54,4 @@ html(lang='en')
                             li #{item.author} 
                             li #{item.date_added} 
                             form(method="POST" action=`/deletebook/${item._id}`)
-                            
                               button(type="submit") Delete

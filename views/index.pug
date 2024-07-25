@@ -23,9 +23,7 @@ html(lang='en')
                 a(href="/favorite_list") faves 
               li.three 
                 a(href="/") home
-          //- div(class='title') BOOKED IT
-          //-   div(class='sm-txt') stay updated with the latest in literature
-          //-   div(class="nav-")
+          
                
             
         
@@ -53,6 +51,9 @@ html(lang='en')
                           li #{item.author} 
                           li #{item.date_added}
                           form(method="POST" action=`/add_favorites/${item._id}`)
-                                button(type="submit") star
+                                button(type='submit')
+                                    i.fa-solid.fa-star
+                                
+
                          
       

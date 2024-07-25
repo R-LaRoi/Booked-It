@@ -73,16 +73,20 @@ app.post("/addbook", async (req, res) => {
     const bookData = req.body;
     const newBook = await new userBooksModel(bookData);
     await newBook.save();
-    res.send(`<body style="background-color: #242424">
-        <main style="background-color: #242424; color: white; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; padding: 20px; width:600px">
-          <div style="display: flex; flex-direction: column">
-            <h1>You booked it!</h1>
-            <a style="text-decoration: none; background: transparent; border: 1px solid white; border-radius:10px; padding:5px; color:white;" href="/user_list">View list</a>
-          </div> 
-           <a style="text-decoration: none; background: transparent; border: 1px solid white; border-radius:10px; padding:5px; color:white;"href="/">Home</a>
-          </div> 
-        </main>
-      </body>`);
+    res.send(`<body style="margin: 0; border: 30px solid #e99a00;">
+    <main style="color: black; text-align: center; display: flex; justify-content: center; align-items: center; height: 100vh;">
+        <div style="display: flex; flex-direction: row;">
+            <div>
+                <img src="https://github.com/user-attachments/assets/6b47a6d7-052e-4560-b2c0-e25de5b0e087" width="65%" />
+            </div>
+            <div style="margin-left: 20px;">
+                <h1 style="color: black;">You booked it!</h1>
+                <a style="text-decoration: none; display: inline-block; margin-top: 10px; width: 352px; height: 37px; border-radius: 25px; border: 0.5px solid rgb(184, 192, 180); color: whitesmoke; font-weight: bold; background-color: #1d1e1e; line-height: 37px;" href="/user_list">YOUR LIST</a>
+                <a style="text-decoration: none; display: inline-block; margin-top: 10px; width: 352px; height: 37px; border-radius: 25px; border: 0.5px solid rgb(184, 192, 180); color: whitesmoke; font-weight: bold; background-color: #1d1e1e; line-height: 37px;" href="/">HOME</a>
+            </div>
+        </div>
+    </main>
+</body>`);
   } catch (error) {
     console.error("Error saving book:", error);
     res
@@ -96,6 +100,24 @@ app.post("/deletebook/:id", async (req, res) => {
   const bookId = req.params.id;
   try {
     const deleteBook = await userBooksModel.findByIdAndDelete(bookId);
+
+    if (!deleteBook) {
+      return res.status(404).json({ message: "Book not found" });
+    }
+    res.status(200).json({ message: "Book deleted successfully", deleteBook });
+  } catch (error) {
+    console.error("Error deleting book:", error);
+    res
+      .status(500)
+      .json({ message: "Internal server error", error: error.message });
+  }
+});
+
+//  delete favorite from faves list
+app.post("/deletefavoritebook/:id", async (req, res) => {
+  const bookId = req.params.id;
+  try {
+    const deleteBook = await userFavesModel.findByIdAndDelete(bookId);
 
     if (!deleteBook) {
       return res.status(404).json({ message: "Book not found" });

@@ -13,23 +13,45 @@ html(lang='en')
    
 
     title Booked It
+ 
   body
     section
       .header
-          div(class='title') BOOKED IT
-            div(class='sm-txt') stay updated with the latest in literature
-            form(method="get" action="/")
-               button(type="submit") home
-            form(method="get" action="/user_list")
-               button(type="submit") your list   
-    section 
-      .userbooks
+          nav.nav--
+              li.one
+                a(href="/user_list") your list 
+              li.two 
+                a(href="/favorite_list") faves 
+              li.three 
+                a(href="/") home
+         
+               
+            
+        
+            
+    .container
+      .sec-one
+        div(class='article-title') your favorites
+          div(class='sm-txt') SUMMER 2024
+          form(method="get" action="/user_list")
+            button(type="submit" class="button-49") your list
+          
+          
+      .sec-two
+         
+             div 
+              img(src="https://github.com/user-attachments/assets/b09d3300-f455-48f0-bf5e-052ba8f35c2f", alt="drawing" class="header-image")
+         
+  section 
+      .book1
           each item in userFaves
                     .list
                             li #{item.title}
                             li #{item.author} 
                             li #{item.date_added} 
-                            form(method="POST" action=`/deletebook/${item._id}`)
+                            form(method="POST" action=`/deletefavoritebook/${item._id}`)
+                              button(type="submit") Delete
+                            
                             
                              
 
