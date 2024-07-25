@@ -14,12 +14,12 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
+
 app.set("view engine", "pug");
 
 // main page ---- list all books from db
 app.get("/", async (req, res) => {
   const allTitles = await bookedItModel.find();
-
   res.render("index", { allTitles });
 });
 
@@ -80,7 +80,7 @@ app.post("/addbook", async (req, res) => {
                 <img src="https://github.com/user-attachments/assets/6b47a6d7-052e-4560-b2c0-e25de5b0e087" width="65%" />
             </div>
             <div style="margin-left: 20px;">
-                <h1 style="color: black;">You booked it!</h1>
+                <h1 style="color: black;">Woohoo! Another literary gem joins the treasure trove!</h1>
                 <a style="text-decoration: none; display: inline-block; margin-top: 10px; width: 352px; height: 37px; border-radius: 25px; border: 0.5px solid rgb(184, 192, 180); color: whitesmoke; font-weight: bold; background-color: #1d1e1e; line-height: 37px;" href="/user_list">YOUR LIST</a>
                 <a style="text-decoration: none; display: inline-block; margin-top: 10px; width: 352px; height: 37px; border-radius: 25px; border: 0.5px solid rgb(184, 192, 180); color: whitesmoke; font-weight: bold; background-color: #1d1e1e; line-height: 37px;" href="/">HOME</a>
             </div>
@@ -113,6 +113,52 @@ app.post("/deletebook/:id", async (req, res) => {
   }
 });
 
+//  get user favorite list
+app.get("/favorite_list", async (req, res) => {
+  try {
+    const userFaves = await userFavesModel.find();
+    res.render("faveslist", { userFaves });
+  } catch (error) {
+    console.error("Favorites are unavailable", error);
+    res
+      .status(500)
+      .json({ message: "Internal server error", error: error.message });
+  }
+});
+
+//  add to favorites list
+app.post("/add_favorites/:id", async (req, res) => {
+  try {
+    let savedItem = req.params.id;
+    const favoriteItem = await bookedItModel.findById(savedItem);
+
+    const newFave = await new userFavesModel(favoriteItem);
+
+    newFave._id = new mongoose.Types.ObjectId();
+    newFave.isNew = true;
+    await newFave.save();
+    res.send(`<body style="margin: 0; border: 30px solid #2C2C2C;">
+    <main style="color: black; text-align: center; display: flex; justify-content: center; align-items: center; height: 100vh;">
+        <div style="display: flex; flex-direction: row;">
+            <div>
+                <img src="https://github.com/user-attachments/assets/f8d9a782-3831-4cda-aa89-c916a888b0f0" width="65%" />
+            </div>
+            <div style="margin-left: 20px;">
+                <h1 style="color: black;">Eureka! Your fave struck gold in our treasure chest of awesomeness!</h1>
+                <a style="text-decoration: none; display: inline-block; margin-top: 10px; width: 352px; height: 37px; border-radius: 25px; border: 0.5px solid rgb(184, 192, 180); color: whitesmoke; font-weight: bold; background-color: #E99A00; line-height: 37px;" href="/user_list">FAVORITES</a>
+                <a style="text-decoration: none; display: inline-block; margin-top: 10px; width: 352px; height: 37px; border-radius: 25px; border: 0.5px solid rgb(184, 192, 180); color: whitesmoke; font-weight: bold; background-color: #E99A00; line-height: 37px;" href="/">HOME</a>
+            </div>
+        </div>
+    </main>
+</body>`);
+  } catch (error) {
+    console.error("Favorite not saved", error);
+    res
+      .status(500)
+      .json({ message: "Internal server error", error: error.message });
+  }
+});
+
 //  delete favorite from faves list
 app.post("/deletefavoritebook/:id", async (req, res) => {
   const bookId = req.params.id;
@@ -125,47 +171,6 @@ app.post("/deletefavoritebook/:id", async (req, res) => {
     res.status(200).json({ message: "Book deleted successfully", deleteBook });
   } catch (error) {
     console.error("Error deleting book:", error);
-    res
-      .status(500)
-      .json({ message: "Internal server error", error: error.message });
-  }
-});
-
-app.get("/favorite_list", async (req, res) => {
-  try {
-    const userFaves = await userFavesModel.find();
-    res.render("faveslist", { userFaves });
-  } catch (error) {
-    console.error("Favorites are unavailable", error);
-    res
-      .status(500)
-      .json({ message: "Internal server error", error: error.message });
-  }
-});
-//  add favorites
-app.post("/add_favorites/:id", async (req, res) => {
-  try {
-    let savedItem = req.params.id;
-    const favoriteItem = await bookedItModel.findById(savedItem);
-
-    const newFave = await new userFavesModel(favoriteItem);
-
-    newFave._id = new mongoose.Types.ObjectId();
-    newFave.isNew = true;
-    await newFave.save();
-
-    res.send(`<body style="background-color: #242424">
-        <main style="background-color: #242424; color: white; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; padding: 20px; width:600px">
-          <div style="display: flex; flex-direction: column">
-            <h1>YOUR FAVES ARE SAVED!</h1>
-            <a style="text-decoration: none; background: transparent; border: 1px solid white; border-radius:10px; padding:5px; color:white;" href="/favorite_list">YOUR FAVES</a>
-          </div> 
-           <a style="text-decoration: none; background: transparent; border: 1px solid white; border-radius:10px; padding:5px; color:white;"href="/">Home</a>
-          </div> 
-        </main>
-      </body>`);
-  } catch (error) {
-    console.error("Favorite not saved", error);
     res
       .status(500)
       .json({ message: "Internal server error", error: error.message });

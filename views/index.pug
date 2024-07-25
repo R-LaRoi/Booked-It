@@ -46,12 +46,11 @@ html(lang='en')
     section    
       .book1
         each item in allTitles
-                  .list
+                  ul.list
                           li #{item.title}
                           li #{item.author} 
-                          li #{item.date_added}
                           form(method="POST" action=`/add_favorites/${item._id}`)
-                                button(type='submit')
+                                button(type='submit' class="round-button")
                                     i.fa-solid.fa-star
                                 
 

@@ -33,8 +33,13 @@ html(lang='en')
       .sec-one
         div(class='article-title') your favorites
           div(class='sm-txt') SUMMER 2024
-          form(method="get" action="/user_list")
-            button(type="submit" class="button-49") your list
+          form(method="get" action="/favorite_list")
+            button(type="submit" class="button-49")
+                i.fa-solid.fa-star 
+                i.fa-solid.fa-star
+                i.fa-solid.fa-star
+                i.fa-solid.fa-star
+                
           
           
       .sec-two
@@ -50,7 +55,8 @@ html(lang='en')
                             li #{item.author} 
                             li #{item.date_added} 
                             form(method="POST" action=`/deletefavoritebook/${item._id}`)
-                              button(type="submit") Delete
+                              button(type="submit" class="round-button" )
+                                  i.fa-solid.fa-circle-minus
                             
                             
                              

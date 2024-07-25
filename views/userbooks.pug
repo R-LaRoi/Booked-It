@@ -47,11 +47,13 @@ html(lang='en')
                       br
                       button(type="submit" class="add-btn") BOOK IT
         
-  div.userbooks
-  each item in userTitles
-                    .list
+  section 
+    .book1
+      each item in userTitles
+                    .list#userbooks
                             li #{item.title}
                             li #{item.author} 
                             li #{item.date_added} 
                             form(method="POST" action=`/deletebook/${item._id}`)
-                              button(type="submit") Delete
+                              button(type="submit" class="round-button") 
+                                i.fa-solid.fa-circle-minus
