@@ -145,7 +145,7 @@ app.post("/add_favorites/:id", async (req, res) => {
             </div>
             <div style="margin-left: 20px;">
                 <h1 style="color: black;">Eureka! Your fave struck gold in our treasure chest of awesomeness!</h1>
-                <a style="text-decoration: none; display: inline-block; margin-top: 10px; width: 352px; height: 37px; border-radius: 25px; border: 0.5px solid rgb(184, 192, 180); color: whitesmoke; font-weight: bold; background-color: #E99A00; line-height: 37px;" href="/user_list">FAVORITES</a>
+                <a style="text-decoration: none; display: inline-block; margin-top: 10px; width: 352px; height: 37px; border-radius: 25px; border: 0.5px solid rgb(184, 192, 180); color: whitesmoke; font-weight: bold; background-color: #E99A00; line-height: 37px;" href="/favorite_list">FAVORITES</a>
                 <a style="text-decoration: none; display: inline-block; margin-top: 10px; width: 352px; height: 37px; border-radius: 25px; border: 0.5px solid rgb(184, 192, 180); color: whitesmoke; font-weight: bold; background-color: #E99A00; line-height: 37px;" href="/">HOME</a>
             </div>
         </div>
