@@ -40,6 +40,16 @@ Booked It -- a server application developed using Node, Express, and MongoDB tha
 - CSS
 - Font Awesome
 
+## Screenshots
+
+![App Screenshot](https://github.com/user-attachments/assets/54d11630-1dbc-4154-8039-25d570c5352a)
+
+![App Screenshot](https://github.com/user-attachments/assets/80b693f1-bacb-4fc2-8e16-33c8cf8533bb)
+
+![App Screenshot](https://github.com/user-attachments/assets/69731102-d940-4eff-8d7c-0f145f94983d)
+
+![App Screenshot](https://github.com/user-attachments/assets/7dc42b4c-c689-4564-8951-1fbd22bfd0c1)
+
 ## Run Locally
 
 Clone the project
@@ -74,13 +84,3 @@ Open browser
 
 
 ```
-
-## Screenshots
-
-![App Screenshot](https://github.com/user-attachments/assets/54d11630-1dbc-4154-8039-25d570c5352a)
-
-![App Screenshot](https://github.com/user-attachments/assets/80b693f1-bacb-4fc2-8e16-33c8cf8533bb)
-
-![App Screenshot](https://github.com/user-attachments/assets/69731102-d940-4eff-8d7c-0f145f94983d)
-
-![App Screenshot](https://github.com/user-attachments/assets/7dc42b4c-c689-4564-8951-1fbd22bfd0c1)
